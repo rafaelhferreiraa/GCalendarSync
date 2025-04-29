@@ -1,0 +1,19 @@
+{
+    "name": "Trello ↔ Google Calendar Sync",
+    "description": "Sincroniza cartões com datas com o Google Calendar",
+    "author": "Rafael Ferreira",
+    "capabilities": {
+      "board-buttons": [
+        {
+          "icon": {
+            "dark": "https://example.com/icon-dark.svg",
+            "light": "https://example.com/icon-light.svg"
+          },
+          "text": "Sincronizar Quadro",
+          "callback": "syncBoard",
+          "condition": "edit"
+        }
+      ]
+    }
+  }
+  
