@@ -1,5 +1,5 @@
-const clientId = 'SEU_CLIENT_ID_GOOGLE';
-const redirectUri = 'https://SEU-PROJETO.vercel.app'; // ou http://localhost:3000
+const clientId = '446219431176-3p7rk7up40qf9hi67qjk142l6fcft3c7.apps.googleusercontent.com';
+const redirectUri = 'https://g-calendar-sync-git-main-rafaels-projects-23e6cbba.vercel.app/'; // ou http://localhost:3000
 const scope = 'https://www.googleapis.com/auth/calendar';
 const trelloKey = 'ce1b2394b00c5cd9e05cb5b3aff0d1c0';
 
