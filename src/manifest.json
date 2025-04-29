@@ -1,19 +1,18 @@
 {
-    "name": "Trello ↔ Google Calendar Sync",
-    "description": "Sincroniza cartões com datas com o Google Calendar",
-    "author": "Rafael Ferreira",
-    "capabilities": {
-      "board-buttons": [
-        {
-          "icon": {
-            "dark": "https://cdn.hyperdev.com/us-east-1%3A3d31b21c-01a0-4da2-8827-4bc6e88b7618%2Ficon-white.svg",
-            "light": "https://cdn.hyperdev.com/us-east-1%3A3d31b21c-01a0-4da2-8827-4bc6e88b7618%2Ficon-black.svg"
-          },
-          "text": "Sincronizar Quadro",
-          "callback": "syncBoard",
-          "condition": "edit"
-        }
-      ]
-    }
+  "name": "Trello ↔ Google Calendar Sync",
+  "description": "Sincroniza cartões com datas com o Google Calendar",
+  "author": "Rafael Ferreira",
+  "capabilities": {
+    "board-buttons": [
+      {
+        "icon": {
+          "dark": "https://cdn.hyperdev.com/us-east-1%3A3d31b21c-01a0-4da2-8827-4bc6e88b7618%2Ficon-white.svg",
+          "light": "https://cdn.hyperdev.com/us-east-1%3A3d31b21c-01a0-4da2-8827-4bc6e88b7618%2Ficon-black.svg"
+        },
+        "text": "Sincronizar Quadro",
+        "callback": "syncBoard",
+        "condition": "edit"
+      }
+    ]
   }
-  
+}
