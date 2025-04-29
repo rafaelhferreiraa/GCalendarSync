@@ -1,0 +1,17 @@
+{
+    "name": "GCalendar Sync",
+    "capabilities": {
+      "board-buttons": [
+        {
+          "text": "Sincronizar com Google Calendar",
+          "callback": "authorizeGoogle"
+        }
+      ]
+    },
+    "icon": {
+      "url": "https://your-domain.com/icon.png"
+    },
+    "author": "Seu Nome",
+    "iframeConnectorUrl": "https://your-domain.com/index.html"
+  }
+  
