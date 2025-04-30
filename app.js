@@ -10,7 +10,7 @@ window.TrelloPowerUp.initialize({
           callback: function (t) {
             return t.popup({
               title: 'Sincronizar com Google Calendar',
-              url: 'popup.hmtml',
+              url: 'popup.html',
               height: 200,
             });
           },
