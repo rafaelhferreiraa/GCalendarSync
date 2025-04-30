@@ -2,7 +2,7 @@
 <html>
 <head>
   <meta charset="UTF-8">
-  <title>Autenticação concluída</title>
+  <title>Autenticando...</title>
   <script src="https://p.trellocdn.com/power-up.min.js"></script>
 </head>
 <body>
@@ -11,20 +11,26 @@
   <script>
     const t = TrelloPowerUp.iframe();
 
-    const tokens = JSON.parse(localStorage.getItem('googleTokens'));
+    async function salvarTokens() {
+      try {
+        const res = await fetch('/api/oauth2callback' + window.location.search);
+        const data = await res.json();
 
-    if (tokens) {
-      t.set('member', 'shared', 'googleTokens', tokens)
-        .then(() => {
+        console.log('Tokens recebidos:', data.tokens);  // Adicionando log para depuração
+
+        if (data.tokens && data.tokens.access_token) {
+          await t.set('member', 'shared', 'googleTokens', data.tokens);
           document.body.innerHTML = '<h3>Autenticação concluída com sucesso. Você pode fechar esta aba.</h3>';
-        })
-        .catch(err => {
-          console.error(err);
-          document.body.innerHTML = '<h3>Erro ao salvar token.</h3>';
-        });
-    } else {
-      document.body.innerHTML = '<h3>Tokens não encontrados.</h3>';
+        } else {
+          throw new Error('Tokens não retornados.');
+        }
+      } catch (err) {
+        console.error('Erro durante a autenticação:', err);
+        document.body.innerHTML = '<h3>Erro na autenticação.</h3>';
+      }
     }
+
+    salvarTokens();
   </script>
 </body>
 </html>
