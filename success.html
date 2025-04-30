@@ -16,17 +16,17 @@
         const res = await fetch('/api/oauth2callback' + window.location.search);
         const data = await res.json();
 
-        console.log('Tokens recebidos:', data.tokens);  // Adicionando log para depuração
+        console.log('Dados retornados: ', data);  // Verifique aqui a resposta
 
-        if (data.tokens && data.tokens.access_token) {
+        if (data && data.tokens && data.tokens.access_token) {
           await t.set('member', 'shared', 'googleTokens', data.tokens);
           document.body.innerHTML = '<h3>Autenticação concluída com sucesso. Você pode fechar esta aba.</h3>';
         } else {
           throw new Error('Tokens não retornados.');
         }
       } catch (err) {
-        console.error('Erro durante a autenticação:', err);
-        document.body.innerHTML = '<h3>Erro na autenticação.</h3>';
+        console.error('Erro na autenticação: ', err);
+        document.body.innerHTML = `<h3>Erro na autenticação: ${err.message}</h3>`;
       }
     }
 
