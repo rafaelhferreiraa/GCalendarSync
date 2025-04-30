@@ -5,7 +5,7 @@ document.getElementById('sync-form').addEventListener('submit', function(e) {
   
   t.popup({
     title: 'Sincronizar Quadro',
-    url: 'https://g-calendar-sync.vercel.app/janelas.html',
+    url: 'https://g-calendar-sync.vercel.app/popup.html',
     height: 400
   });
 
