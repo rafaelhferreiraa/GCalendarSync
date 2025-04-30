@@ -11,12 +11,27 @@ export default async function handler(req, res) {
 
   try {
     const { tokens } = await oauth2Client.getToken(code);
+    oauth2Client.setCredentials(tokens);
 
-    const redirectUrl = new URL('https://g-calendar-sync.vercel.app/success.html');
-    const encoded = Buffer.from(JSON.stringify(tokens)).toString('base64');
-    redirectUrl.searchParams.set('tokens', encoded);
-
-    res.redirect(redirectUrl.toString());
+    // Salva os tokens no localStorage
+    res.setHeader('Content-Type', 'text/html');
+    res.send(`
+      <!DOCTYPE html>
+      <html>
+      <head>
+        <meta charset="UTF-8">
+        <title>Autenticação concluída</title>
+        <script src="https://p.trellocdn.com/power-up.min.js"></script>
+      </head>
+      <body>
+        <h2>Autenticando com Trello...</h2>
+        <script>
+          localStorage.setItem('googleTokens', JSON.stringify(${JSON.stringify(tokens)}));
+          window.location.href = 'https://g-calendar-sync.vercel.app/success.html';
+        </script>
+      </body>
+      </html>
+    `);
   } catch (err) {
     console.error(err);
     res.status(500).send('Erro na autenticação.');

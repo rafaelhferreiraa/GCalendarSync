@@ -1,20 +1,30 @@
-<script src="https://p.trellocdn.com/power-up.min.js"></script>
-<script>
-  const t = TrelloPowerUp.iframe();
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Autenticação concluída</title>
+  <script src="https://p.trellocdn.com/power-up.min.js"></script>
+</head>
+<body>
+  <h2>Autenticando...</h2>
 
-  const params = new URLSearchParams(window.location.search);
-  const tokenEncoded = params.get('tokens');
-  if (!tokenEncoded) {
-    document.body.innerHTML = '<h3>Erro: Tokens não recebidos.</h3>';
-  } else {
-    const tokens = JSON.parse(atob(tokenEncoded));
-    t.set('member', 'shared', 'googleTokens', tokens)
-      .then(() => {
-        document.body.innerHTML = '<h3>Autenticação concluída com sucesso. Você pode fechar esta aba.</h3>';
-      })
-      .catch((err) => {
-        console.error(err);
-        document.body.innerHTML = '<h3>Erro ao salvar token.</h3>';
-      });
-  }
-</script>
+  <script>
+    const t = TrelloPowerUp.iframe();
+
+    const tokens = JSON.parse(localStorage.getItem('googleTokens'));
+
+    if (tokens) {
+      t.set('member', 'shared', 'googleTokens', tokens)
+        .then(() => {
+          document.body.innerHTML = '<h3>Autenticação concluída com sucesso. Você pode fechar esta aba.</h3>';
+        })
+        .catch(err => {
+          console.error(err);
+          document.body.innerHTML = '<h3>Erro ao salvar token.</h3>';
+        });
+    } else {
+      document.body.innerHTML = '<h3>Tokens não encontrados.</h3>';
+    }
+  </script>
+</body>
+</html>
