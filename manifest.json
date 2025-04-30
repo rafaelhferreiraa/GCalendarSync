@@ -6,8 +6,8 @@
       "board-buttons": [
         {
           "icon": {
-            "dark": "/icon.svg",
-            "light": "/icon.svg"
+            "dark": "https://g-calendar-sync.vercel.app/icon.svg",
+            "light": "https://g-calendar-sync.vercel.app/icon.svg"
           },
           "text": "Sincronizar Quadro",
           "callback": "syncBoard",

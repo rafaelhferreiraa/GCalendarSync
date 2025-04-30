@@ -3,14 +3,16 @@ window.TrelloPowerUp.initialize({
       return [
         {
           icon: {
-            dark: '/icon.svg', 
-            light: '/icon.svg' 
+            dark: 'https://g-calendar-sync.vercel.app/icon.svg', 
+            light: 'https://g-calendar-sync.vercel.app/icon.svg' 
           },
           text: 'Sincronizar Quadro',
           callback: function (t) {
-            // Aqui você pode adicionar a lógica de sincronização, por exemplo, com o Google Calendar
-            console.log('Botão de sincronização do quadro clicado');
-            alert('Sincronizando com o Google Calendar...');
+            return t.popup({
+              title: 'Sincronizar com Google Calendar',
+              url: 'popup.hmtml',
+              height: 200,
+            });
           },
           condition: 'edit'
         }
