@@ -14,9 +14,6 @@
           "condition": "edit"
         }
       ]
-    },
-    "popup": {
-      "url": "https://g-calendar-sync.vercel.app/janelas.html"
     }
   }
   
