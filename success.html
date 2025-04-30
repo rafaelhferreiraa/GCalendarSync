@@ -2,7 +2,7 @@
 <html>
 <head>
   <meta charset="UTF-8">
-  <title>Autenticando...</title>
+  <title>Autenticação concluída</title>
   <script src="https://p.trellocdn.com/power-up.min.js"></script>
 </head>
 <body>
@@ -13,29 +13,21 @@
 
     async function salvarTokens() {
       try {
-        const res = await fetch('/api/oauth2callback' + window.location.search);
-        
-        // Verifique se a resposta é JSON
-        const contentType = res.headers.get('Content-Type');
-        let data;
-        if (contentType && contentType.includes('application/json')) {
-          data = await res.json();
-        } else {
-          const text = await res.text();
-          throw new Error('Resposta não é JSON. Conteúdo: ' + text);
-        }
+        // Pega os tokens da URL
+        const urlParams = new URLSearchParams(window.location.search);
+        const tokensBase64 = urlParams.get('tokens');
 
-        console.log('Dados retornados: ', data);
-
-        if (data && data.tokens && data.tokens.access_token) {
-          await t.set('member', 'shared', 'googleTokens', data.tokens);
+        if (tokensBase64) {
+          // Decodifica os tokens
+          const tokens = JSON.parse(atob(tokensBase64));
+          await t.set('member', 'shared', 'googleTokens', tokens);
           document.body.innerHTML = '<h3>Autenticação concluída com sucesso. Você pode fechar esta aba.</h3>';
         } else {
-          throw new Error('Tokens não retornados.');
+          throw new Error('Tokens não encontrados.');
         }
       } catch (err) {
-        console.error('Erro na autenticação: ', err);
-        document.body.innerHTML = `<h3>Erro na autenticação: ${err.message}</h3>`;
+        console.error(err);
+        document.body.innerHTML = '<h3>Erro na autenticação.</h3>';
       }
     }
 
