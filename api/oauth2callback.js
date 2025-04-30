@@ -11,6 +11,7 @@ export default async function handler(req, res) {
 
   try {
     const { tokens } = await oauth2Client.getToken(code);
+    console.log(tokens);
     oauth2Client.setCredentials(tokens);
 
     // Salvar os tokens no contexto do Power-Up do Trello
