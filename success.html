@@ -14,9 +14,18 @@
     async function salvarTokens() {
       try {
         const res = await fetch('/api/oauth2callback' + window.location.search);
-        const data = await res.json();
+        
+        // Verifique se a resposta é JSON
+        const contentType = res.headers.get('Content-Type');
+        let data;
+        if (contentType && contentType.includes('application/json')) {
+          data = await res.json();
+        } else {
+          const text = await res.text();
+          throw new Error('Resposta não é JSON. Conteúdo: ' + text);
+        }
 
-        console.log('Dados retornados: ', data);  // Verifique aqui a resposta
+        console.log('Dados retornados: ', data);
 
         if (data && data.tokens && data.tokens.access_token) {
           await t.set('member', 'shared', 'googleTokens', data.tokens);
