@@ -6,9 +6,15 @@
   <script src="https://p.trellocdn.com/power-up.min.js"></script>
 </head>
 <body>
-  <form id="sync-form">
-    <button type="submit">Sincronizar agora</button>
-  </form>
+  <div id="auth-section" style="display: none;">
+    <button id="auth-btn">Autenticar com Google</button>
+  </div>
+
+  <div id="sync-section" style="display: none;">
+    <form id="sync-form">
+      <button type="submit">Sincronizar agora</button>
+    </form>
+  </div>
 
   <script src="/popup.js"></script>
 </body>

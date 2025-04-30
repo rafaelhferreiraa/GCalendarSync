@@ -13,7 +13,9 @@ export default async function handler(req, res) {
     const { tokens } = await oauth2Client.getToken(code);
     oauth2Client.setCredentials(tokens);
 
-    // Aqui você pode salvar o token via Trello Power-Up t.set(), ou backend com session/cookies
+    // Salvar os tokens no contexto do Power-Up do Trello
+    const t = require('@trello/power-up');
+    await t.set('member', 'shared', 'googleTokens', tokens);
 
     res.send('Autenticação concluída! Você pode fechar essa aba.');
   } catch (err) {
