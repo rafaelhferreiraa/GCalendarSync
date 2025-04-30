@@ -13,27 +13,9 @@ export default async function handler(req, res) {
     const { tokens } = await oauth2Client.getToken(code);
     oauth2Client.setCredentials(tokens);
 
-    // Salva os tokens no localStorage
-    res.setHeader('Content-Type', 'text/html');
-    res.send(`
-      <!DOCTYPE html>
-      <html>
-      <head>
-        <meta charset="UTF-8">
-        <title>Autenticação concluída</title>
-        <script src="https://p.trellocdn.com/power-up.min.js"></script>
-      </head>
-      <body>
-        <h2>Autenticando com Trello...</h2>
-        <script>
-          localStorage.setItem('googleTokens', JSON.stringify(${JSON.stringify(tokens)}));
-          window.location.href = 'https://g-calendar-sync.vercel.app/success.html';
-        </script>
-      </body>
-      </html>
-    `);
+    res.status(200).json({ tokens }); // Retorne os tokens como JSON
   } catch (err) {
     console.error(err);
-    res.status(500).send('Erro na autenticação.');
+    res.status(500).json({ error: 'Erro na autenticação' }); // Retorne um erro em formato JSON
   }
 }
