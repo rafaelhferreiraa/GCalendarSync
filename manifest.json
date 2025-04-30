@@ -14,6 +14,9 @@
           "condition": "edit"
         }
       ]
+    },
+    "popup": {
+      "url": "https://g-calendar-sync.vercel.app/popup.html"
     }
   }
   
