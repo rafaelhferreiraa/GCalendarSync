@@ -3,8 +3,8 @@ window.TrelloPowerUp.initialize({
       return [
         {
           icon: {
-            dark: 'https://example.com/icon-dark.svg', // Substitua pelo ícone real
-            light: 'https://example.com/icon-light.svg' // Substitua pelo ícone real
+            dark: '/icon.svg', 
+            light: '/icon.svg' 
           },
           text: 'Sincronizar Quadro',
           callback: function (t) {
