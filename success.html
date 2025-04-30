@@ -20,6 +20,7 @@
         if (tokensBase64) {
           // Decodifica os tokens
           const tokens = JSON.parse(atob(tokensBase64));
+          console.log('Tokens recebidos:', tokens); // Verifique se os tokens estão sendo recebidos corretamente.
           await t.set('member', 'shared', 'googleTokens', tokens);
           document.body.innerHTML = '<h3>Autenticação concluída com sucesso. Você pode fechar esta aba.</h3>';
         } else {
