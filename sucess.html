@@ -1,0 +1,20 @@
+<script src="https://p.trellocdn.com/power-up.min.js"></script>
+<script>
+  const t = TrelloPowerUp.iframe();
+
+  const params = new URLSearchParams(window.location.search);
+  const tokenEncoded = params.get('tokens');
+  if (!tokenEncoded) {
+    document.body.innerHTML = '<h3>Erro: Tokens não recebidos.</h3>';
+  } else {
+    const tokens = JSON.parse(atob(tokenEncoded));
+    t.set('member', 'shared', 'googleTokens', tokens)
+      .then(() => {
+        document.body.innerHTML = '<h3>Autenticação concluída com sucesso. Você pode fechar esta aba.</h3>';
+      })
+      .catch((err) => {
+        console.error(err);
+        document.body.innerHTML = '<h3>Erro ao salvar token.</h3>';
+      });
+  }
+</script>
