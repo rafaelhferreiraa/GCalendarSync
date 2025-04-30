@@ -6,8 +6,8 @@
       "board-buttons": [
         {
           "icon": {
-            "dark": "https://example.com/icon-dark.svg",
-            "light": "https://example.com/icon-light.svg"
+            "dark": "/icon.svg",
+            "light": "/icon.svg"
           },
           "text": "Sincronizar Quadro",
           "callback": "syncBoard",
